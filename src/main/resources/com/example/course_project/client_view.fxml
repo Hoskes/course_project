@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1">
+  <tabs>
+    <Tab closable="false" text="Профиль" />
+      <Tab closable="false" text="Таблица заказов">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane prefHeight="371.0" prefWidth="600.0">
+                     <content>
+                        <TableView prefHeight="482.0" prefWidth="671.0">
+                          <columns>
+                            <TableColumn prefWidth="38.39999467134476" text="ID" />
+                            <TableColumn editable="false" prefWidth="55.999996185302734" text="USER ID" />
+                              <TableColumn editable="false" prefWidth="57.60003662109375" text="BIKE ID" />
+                              <TableColumn editable="false" prefWidth="86.39996337890625" text="Статус заказа" />
+                              <TableColumn editable="false" prefWidth="54.40003967285156" text="Создан" />
+                              <TableColumn editable="false" prefWidth="108.79998779296875" text="Точка отправки" />
+                              <TableColumn prefWidth="115.20001220703125" text="Точка получения" />
+                              <TableColumn prefWidth="87.199951171875" text="Дата получения" />
+                              <TableColumn prefWidth="75.0" text="Точка получения" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
