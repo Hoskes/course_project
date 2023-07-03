@@ -48,19 +48,21 @@ public class User {
     public static String getAdress() {
         return adress;
     }
-    public static String getCurrentRole() throws SQLException {
+    public static String getCurrentRole() {
         if(role==null) {
-            String pre_query = Config.find_user_by_id;
+            String pre_query = Config.find_role_by_user_id;
             PreparedStatement query = null;
+            String result_string = null;
             try {
                 query = Server.getConnection().prepareStatement(pre_query);
+            query.setInt(1, id);
+            ResultSet result = query.executeQuery();
+            result.next();
+            result_string = result.getString(1);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            query.setInt(1, role_id);
-            ResultSet result = query.executeQuery();
-            result.next();
-            return result.getString(2);
+            return result_string;
         }else
             return role;
     }

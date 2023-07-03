@@ -19,18 +19,27 @@ public class ClientController {
     @FXML
     private TextField adress;
     @FXML
+    void initialize() {
+        set_role.setText(User.getCurrentRole());
+        first_name.setText(User.getName()[0]);
+        last_name.setText(User.getName()[1]);
+        f_name.setText(User.getName()[2]);
+        adress.setText(User.getAdress());
+    }
+    @FXML
     public void updateRole(ActionEvent e){
-        try {
             set_role.setText(User.getCurrentRole());
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
 
-    public void changeFirstName(ActionEvent actionEvent) {
     }
-
-    public void checkFirstNameFormat(InputMethodEvent inputMethodEvent) {
+    @FXML
+    private void changeFirstName(ActionEvent actionEvent) {
+    }
+    @FXML
+    private void checkFirstNameFormat(InputMethodEvent inputMethodEvent) {
+//        System.out.println("#");
+//        if (first_name.getText()==null | !first_name.getText().matches("[A-z]+|[А-я]+}")) {
+//            first_name.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+//        }
     }
 
     public void checkLastNameFormat(InputMethodEvent inputMethodEvent) {
@@ -49,5 +58,8 @@ public class ClientController {
     }
 
     public void checkAdressFormat(InputMethodEvent inputMethodEvent) {
+    }
+
+    public void save_changes(ActionEvent actionEvent) {
     }
 }
