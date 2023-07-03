@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class User {
-    private static User user;
+public class Profile {
+    private static Profile profile;
     private static int role_id = 0;
     private static String role = null;
     private static int id;
@@ -15,7 +15,7 @@ public class User {
     private static String adress;
     private static RecordTable t;
 
-    public User(int user_id) throws SQLException {
+    public Profile(int user_id) throws SQLException {
         String pre_query = Config.find_user_by_id;
         PreparedStatement query = Server.getConnection().prepareStatement(pre_query);
         query.setInt(1,user_id);
@@ -24,8 +24,8 @@ public class User {
         //System.out.println(id+" "+name[0]+" "+name[1]+" "+name[2]+" "+adress+" "+role);
     }
 
-    public static User getUser() {
-        return user;
+    public static Profile getUser() {
+        return profile;
     }
 
     public static int getRole_id() {

@@ -56,19 +56,18 @@
                </children>
             </AnchorPane>
          </content></Tab>
-      <Tab fx:id="table_list" closable="false" onSelectionChanged="#updatePanel" text="Таблица заказов">
+      <Tab closable="false" onSelectionChanged="#updatePanel" text="Таблица заказов">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ScrollPane prefHeight="371.0" prefWidth="600.0">
                      <content>
-                        <TableView fx:id="people_table" prefHeight="369.0" prefWidth="588.0">
+                        <TableView fx:id="people_table" prefHeight="482.0" prefWidth="671.0">
                           <columns>
                             <TableColumn fx:id="order_id" prefWidth="27.999970257282257" text="ID" />
-                            <TableColumn fx:id="user_id" editable="false" prefWidth="51.19997787475586" text="USER ID" />
                               <TableColumn fx:id="bike_id" editable="false" prefWidth="50.4000244140625" text="BIKE ID" />
+                              <TableColumn fx:id="point_string" editable="false" prefWidth="99.20001220703125" text="Точка отправки" />
                               <TableColumn fx:id="state" editable="false" prefWidth="83.199951171875" text="Статус заказа" />
-                              <TableColumn fx:id="from_point" editable="false" prefWidth="127.20001220703125" text="Точка отправки" />
                           </columns>
                         </TableView>
                      </content>

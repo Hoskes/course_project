@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class AuthorizationController {
@@ -24,7 +23,7 @@ public class AuthorizationController {
                 System.out.println("You are entered!");
                 Main.loadScene(actionEvent,"client_view.fxml"); ///ВОТКНУТЬ В SWITCH
                 try {
-                    switch (User.getCurrentRole()) {
+                    switch (Profile.getCurrentRole()) {
                         case "Клиент":
                             Main.loadScene(actionEvent, "");
                             break;

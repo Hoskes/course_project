@@ -64,7 +64,7 @@ public class Server {
         query.setString(2,PasswordHashing.hashPassword(user_password));
         ResultSet result = query.executeQuery();
         if (result.next()==true) {
-            new User(result.getInt(1));
+            new Profile(result.getInt(1));
             return true;
         }
         return false;

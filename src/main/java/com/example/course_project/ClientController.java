@@ -3,20 +3,20 @@ package com.example.course_project;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClientController {
-    public TableColumn order_id;
-    public TableColumn user_id;
-    public TableColumn bike_id;
-    public TableColumn state;
-    public TableColumn from_point;
+    public TableColumn<Order,String> order_id;
+    public TableColumn<Order,String> bike_id;
+    public TableColumn<Order,String> point_string;
+    public TableColumn<Order,String> state;
+    public Button save_button;
     @FXML
     private TextField set_role;
     @FXML
@@ -31,13 +31,18 @@ public class ClientController {
     private TableView people_table;
     @FXML
     void initialize() {
-        
-        set_role.setText(User.getCurrentRole());
-        first_name.setText(User.getName()[0]);
-        last_name.setText(User.getName()[1]);
-        f_name.setText(User.getName()[2]);
-        adress.setText(User.getAdress());
-        set_role.setText(User.getCurrentRole());
+        UserOrderModel model = new UserOrderModel();
+        people_table.setItems(model.getItems());
+        order_id.setCellValueFactory(new PropertyValueFactory<>("id"));;
+        bike_id.setCellValueFactory(new PropertyValueFactory<>("bike_id"));
+        point_string.setCellValueFactory(new PropertyValueFactory<>("status"));
+        state.setCellValueFactory(new PropertyValueFactory<>("point_created_name"));
+        set_role.setText(Profile.getCurrentRole());
+        first_name.setText(Profile.getName()[0]);
+        last_name.setText(Profile.getName()[1]);
+        f_name.setText(Profile.getName()[2]);
+        adress.setText(Profile.getAdress());
+        set_role.setText(Profile.getCurrentRole());
 
         addListenerNameFormat(first_name,Config.regex_name);
         addListenerNameFormat(last_name,Config.regex_name);
@@ -64,7 +69,7 @@ public class ClientController {
     }
     @FXML
     public void updateRole(ActionEvent e){
-            set_role.setText(User.getCurrentRole());
+            set_role.setText(Profile.getCurrentRole());
 
     }
 
@@ -73,29 +78,31 @@ public class ClientController {
         //TextField[] t = {first_name, last_name, f_name};
         String changing_list = "";
         ArrayList<String> values= new ArrayList<>();
-        if (checkFormat(first_name.getText(), Config.regex_name) & !first_name.getText().equals(User.getName()[0])) {
-            User.getName()[0] = first_name.getText();
+        if (checkFormat(first_name.getText(), Config.regex_name) & !first_name.getText().equals(Profile.getName()[0])) {
+            Profile.getName()[0] = first_name.getText();
             changing_list+="first_name=?, ";
             values.add(first_name.getText());
         }
-        if (checkFormat(last_name.getText(), Config.regex_name) & !last_name.getText().equals(User.getName()[1])) {
-            User.getName()[1] = last_name.getText();
+        if (checkFormat(last_name.getText(), Config.regex_name) & !last_name.getText().equals(Profile.getName()[1])) {
+            Profile.getName()[1] = last_name.getText();
             changing_list+="last_name=?, ";
             values.add(last_name.getText());
         }
-        if (checkFormat(f_name.getText(), Config.regex_name) & !f_name.getText().equals(User.getName()[2])) {
-            User.getName()[2] = f_name.getText();
+        if (checkFormat(f_name.getText(), Config.regex_name) & !f_name.getText().equals(Profile.getName()[2])) {
+            Profile.getName()[2] = f_name.getText();
             changing_list+="f_name=?, ";
             values.add(f_name.getText());
         }
-        if (checkFormat(adress.getText(), Config.adress) & !adress.getText().equals(User.getAdress())) {
-            User.setAdress(adress.getText());
+        if (checkFormat(adress.getText(), Config.adress) & !adress.getText().equals(Profile.getAdress())) {
+            Profile.setAdress(adress.getText());
             changing_list+="adress=?, ";
             values.add(adress.getText());
         }
-        User.updateUserInfo(changing_list.substring(0,changing_list.length()-2),values);
-        User.setNewToDefaultValues();
+        Profile.updateUserInfo(changing_list.substring(0,changing_list.length()-2),values);
+        Profile.setNewToDefaultValues();
         //System.out.println(User.getName()[0]);
     }
 
+    public void updatePanel(Event event) {
+    }
 }
