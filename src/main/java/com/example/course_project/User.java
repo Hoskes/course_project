@@ -6,7 +6,8 @@ import java.sql.SQLException;
 
 public class User {
     private static User user;
-    private static int role = 0;
+    private static int role_id = 0;
+    private static String role = null;
     private static int id;
     private static String[] name = new String[3];
     private static int pass_id = 0;
@@ -23,8 +24,8 @@ public class User {
         name[1] = result.getString(3);
         name[2] = result.getString(4);
         adress = result.getString(5);
-        role = result.getInt(6);
-        role = result.getInt(7);
+        role_id = result.getInt(6);
+        role_id = result.getInt(7);
         //System.out.println(id+" "+name[0]+" "+name[1]+" "+name[2]+" "+adress+" "+role);
     }
 
@@ -32,8 +33,8 @@ public class User {
         return user;
     }
 
-    public static int getRole() {
-        return role;
+    public static int getRole_id() {
+        return role_id;
     }
 
     public static int getId() {
@@ -48,16 +49,19 @@ public class User {
         return adress;
     }
     public static String getCurrentRole() throws SQLException {
-        String pre_query = Config.find_user_by_id;
-        PreparedStatement query = null;
-        try {
-            query = Server.getConnection().prepareStatement(pre_query);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        query.setInt(1,role);
-        ResultSet result = query.executeQuery();
-        result.next();
-        return result.getString(2);
+        if(role==null) {
+            String pre_query = Config.find_user_by_id;
+            PreparedStatement query = null;
+            try {
+                query = Server.getConnection().prepareStatement(pre_query);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            query.setInt(1, role_id);
+            ResultSet result = query.executeQuery();
+            result.next();
+            return result.getString(2);
+        }else
+            return role;
     }
 }

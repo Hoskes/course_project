@@ -2,15 +2,17 @@ package com.example.course_project;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class AuthorizationController {
     @FXML
     private TextField login_value;
     @FXML
-    private TextField password_value;
+    private PasswordField password_value;
     @FXML
     private void toRegistrationPage(ActionEvent actionEvent) {
     }
@@ -20,7 +22,11 @@ public class AuthorizationController {
             if(Server.enterTheSystem(login_value.getText(),password_value.getText())){
                 System.out.println("You are entered!");
                 try {
-
+                    Main.loadScene(actionEvent,"client_view.fxml");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
                     switch (User.getCurrentRole()) {
                         case "Клиент":
                             Main.loadScene(actionEvent, "");

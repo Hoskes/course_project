@@ -39,8 +39,17 @@ public class Main extends Application {
         return Main.stage;
     }
     public static void loadScene(ActionEvent e, String path) throws IOException {
+//        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+//        Parent root = FXMLLoader.load(Main.class.getResource(path));
+//        Scene scene = new Scene(root);
+//        scene.setRoot(root);
+//        stage.setScene(scene);
+//        stage.show();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));
-        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         Scene new_scene = new Scene(fxmlLoader.load());
+//        new_scene.setRoot(fxmlLoader.load());
+        stage.setScene(new_scene);
+        stage.show();
     }
 }

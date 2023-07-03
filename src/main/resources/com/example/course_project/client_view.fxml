@@ -5,28 +5,72 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.ClientController">
   <tabs>
-    <Tab closable="false" text="Профиль" />
+    <Tab closable="false" text="Профиль">
+         <content>
+            <AnchorPane prefHeight="293.0" prefWidth="447.0">
+               <children>
+                  <TextField fx:id="first_name" layoutX="160.0" layoutY="87.0" onAction="#changeFirstName" onInputMethodTextChanged="#checkFirstNameFormat" />
+                  <Text layoutX="81.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="last_name" layoutX="160.0" layoutY="126.0" onAction="#changeLastName" onInputMethodTextChanged="#checkLastNameFormat" />
+                  <Text layoutX="116.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="f_name" layoutX="160.0" layoutY="164.0" onAction="#changeFName" onInputMethodTextChanged="#checkFNameFormat" />
+                  <Text layoutX="80.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="adress" layoutX="160.0" layoutY="207.0" onAction="#ChangeAdress" onInputMethodTextChanged="#checkAdressFormat" />
+                  <Text layoutX="103.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Адрес:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="392.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ваш статус:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="23.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ваши данные:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="set_role" editable="false" layoutX="484.0" layoutY="38.0" onAction="#updateRole" prefHeight="26.0" prefWidth="102.0" />
+               </children>
+            </AnchorPane>
+         </content></Tab>
       <Tab closable="false" text="Таблица заказов">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <ScrollPane prefHeight="371.0" prefWidth="600.0">
                      <content>
-                        <TableView prefHeight="482.0" prefWidth="671.0">
+                        <TableView fx:id="people_table" prefHeight="482.0" prefWidth="671.0">
                           <columns>
-                            <TableColumn prefWidth="38.39999467134476" text="ID" />
-                            <TableColumn editable="false" prefWidth="55.999996185302734" text="USER ID" />
-                              <TableColumn editable="false" prefWidth="57.60003662109375" text="BIKE ID" />
-                              <TableColumn editable="false" prefWidth="86.39996337890625" text="Статус заказа" />
-                              <TableColumn editable="false" prefWidth="54.40003967285156" text="Создан" />
-                              <TableColumn editable="false" prefWidth="108.79998779296875" text="Точка отправки" />
-                              <TableColumn prefWidth="115.20001220703125" text="Точка получения" />
-                              <TableColumn prefWidth="87.199951171875" text="Дата получения" />
-                              <TableColumn prefWidth="75.0" text="Точка получения" />
+                            <TableColumn prefWidth="27.999970257282257" text="ID" />
+                            <TableColumn editable="false" prefWidth="51.19997787475586" text="USER ID" />
+                              <TableColumn editable="false" prefWidth="50.4000244140625" text="BIKE ID" />
+                              <TableColumn editable="false" prefWidth="83.199951171875" text="Статус заказа" />
+                              <TableColumn editable="false" prefWidth="50.39997863769531" text="Создан" />
+                              <TableColumn editable="false" prefWidth="99.20001220703125" text="Точка отправки" />
+                              <TableColumn prefWidth="108.0" text="Точка получения" />
+                              <TableColumn prefWidth="112.00006103515625" text="Дата получения" />
+                              <TableColumn prefWidth="104.800048828125" text="Точка получения" />
                           </columns>
                         </TableView>
                      </content>

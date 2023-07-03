@@ -1,4 +1,7 @@
 package com.example.course_project;
 
-public class Request { //обернуть ответ от сервера
-}
+import java.util.HashMap;
+
+//public class Request { //обернуть ответ от сервера
+//    HashMap<>
+//}

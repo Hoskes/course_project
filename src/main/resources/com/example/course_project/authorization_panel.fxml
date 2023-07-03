@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.AuthorizationController">
    <children>
       <TextField fx:id="login_value" layoutX="203.0" layoutY="151.0" prefHeight="26.0" prefWidth="214.0" />
-      <TextField fx:id="password_value" layoutX="203.0" layoutY="195.0" prefHeight="26.0" prefWidth="214.0" />
-      <Button fx:id="enter_button" layoutX="237.0" layoutY="291.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="Вход" onAction="#checkIsValid"/>
-      <Button layoutX="237.0" layoutY="336.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="Регистрация" onAction="#toRegistrationPage" />
+      <Button fx:id="enter_button" layoutX="237.0" layoutY="291.0" mnemonicParsing="false" onAction="#checkIsValid" prefHeight="26.0" prefWidth="126.0" text="Вход" />
+      <Button layoutX="237.0" layoutY="336.0" mnemonicParsing="false" onAction="#toRegistrationPage" prefHeight="26.0" prefWidth="126.0" text="Регистрация" />
       <Text layoutX="214.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Авторизация" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
@@ -28,5 +27,6 @@
             <Font size="16.0" />
          </font>
       </Text>
+      <PasswordField fx:id="password_value" layoutX="203.0" layoutY="195.0" prefHeight="26.0" prefWidth="214.0" />
    </children>
 </AnchorPane>
