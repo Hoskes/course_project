@@ -1,62 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.stage.Stage?>
 
-<Stage title="Registration panel" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RegistrationController">
-    <scene>
-        <Scene>
-            <AnchorPane prefHeight="400.0" prefWidth="600.0">
-            <children>
-               <TextField fx:id="first_name" layoutX="203.0" layoutY="55.0" onInputMethodTextChanged="#checkFirstNameFormat" prefHeight="26.0" prefWidth="214.0" />
-               <TextField fx:id="last_name" layoutX="203.0" layoutY="104.0" onInputMethodTextChanged="#checkLarstNameFormat" prefHeight="26.0" prefWidth="214.0" />
-               <Button fx:id="registration" layoutX="247.0" layoutY="352.0" mnemonicParsing="false" onAction="#registrate" prefHeight="26.0" prefWidth="126.0" text="Регистрация" />
-               <Text layoutX="232.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация" textAlignment="CENTER">
-                  <font>
-                     <Font size="24.0" />
-                  </font>
-               </Text>
-               <Text layoutX="119.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия:">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </Text>
-               <Text layoutX="154.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя:">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </Text>
-               <Text layoutX="14.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество(при наличии):" wrappingWidth="176.54690551757812">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </Text>
-               <TextField fx:id="f_name" layoutX="203.0" layoutY="157.0" onInputMethodTextChanged="#checkFNameFormat" prefHeight="26.0" prefWidth="214.0" />
-               <TextField fx:id="login" layoutX="203.0" layoutY="207.0" onInputMethodTextChanged="#checkLogin" prefHeight="26.0" prefWidth="214.0" />
-               <TextField fx:id="password" layoutX="203.0" layoutY="254.0" onInputMethodTextChanged="#checkPassword" prefHeight="26.0" prefWidth="214.0" />
-               <TextField fx:id="password_again" layoutX="203.0" layoutY="300.0" onInputMethodTextChanged="#checkIsEqual" prefHeight="26.0" prefWidth="214.0" />
-               <Text layoutX="142.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин:">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </Text>
-               <Text layoutX="131.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль:">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </Text>
-               <Text layoutX="33.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Подтвердите пароль:">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </Text>
-               <Button fx:id="to_enter" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#toEnter" text="К странице входа" />
-            </children></AnchorPane>
-        </Scene>
-    </scene>
-</Stage>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.RegistrationController">
+   <children>
+      <TextField fx:id="first_name" layoutX="203.0" layoutY="55.0" onInputMethodTextChanged="#checkFirstNameFormat" prefHeight="26.0" prefWidth="214.0" />
+      <TextField fx:id="last_name" layoutX="203.0" layoutY="104.0" onInputMethodTextChanged="#checkLarstNameFormat" prefHeight="26.0" prefWidth="214.0" />
+      <Button fx:id="registration" layoutX="247.0" layoutY="352.0" mnemonicParsing="false" onAction="#registrate" prefHeight="26.0" prefWidth="126.0" text="Регистрация" />
+      <Text layoutX="232.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Регистрация" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="119.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="154.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество(при наличии):" wrappingWidth="176.54690551757812">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="f_name" layoutX="203.0" layoutY="157.0" onInputMethodTextChanged="#checkFNameFormat" prefHeight="26.0" prefWidth="214.0" />
+      <TextField fx:id="login" layoutX="203.0" layoutY="207.0" onInputMethodTextChanged="#checkLogin" prefHeight="26.0" prefWidth="214.0" />
+      <TextField fx:id="password" layoutX="203.0" layoutY="254.0" onInputMethodTextChanged="#checkPassword" prefHeight="26.0" prefWidth="214.0" />
+      <TextField fx:id="password_again" layoutX="203.0" layoutY="300.0" onInputMethodTextChanged="#checkIsEqual" prefHeight="26.0" prefWidth="214.0" />
+      <Text layoutX="142.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="131.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="33.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Подтвердите пароль:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="to_enter" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#toEnter" text="К странице входа" />
+   </children>
+</AnchorPane>

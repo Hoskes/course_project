@@ -18,14 +18,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("authorization_panel.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Server.getServer();
-//        try {
-//            //System.out.println(Server.getServer().enterTheSystem("admin","admin"));
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        Server.getServer().checkLogin("admin");
         Main.stage = stage;
-//        System.out.println(Server.returnDefaultQuery(Querry.testquery));
         stage.setTitle("Hello");
         stage.setScene(scene);
         stage.show();
@@ -38,7 +31,7 @@ public class Main extends Application {
     public static Stage getStage(){
         return Main.stage;
     }
-    public static void loadScene(ActionEvent e, String path) throws IOException {
+    public static void loadScene(ActionEvent e, String path)  {
 //        Stage stage = (Stage)((Node)e.getSource()).getScene().getWindow();
 //        Parent root = FXMLLoader.load(Main.class.getResource(path));
 //        Scene scene = new Scene(root);
@@ -47,7 +40,12 @@ public class Main extends Application {
 //        stage.show();
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(path));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        Scene new_scene = new Scene(fxmlLoader.load());
+        Scene new_scene = null;
+        try {
+            new_scene = new Scene(fxmlLoader.load());
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
 //        new_scene.setRoot(fxmlLoader.load());
         stage.setScene(new_scene);
         stage.show();

@@ -15,17 +15,14 @@ public class AuthorizationController {
     private PasswordField password_value;
     @FXML
     private void toRegistrationPage(ActionEvent actionEvent) {
+        Main.loadScene(actionEvent,"registration_panel.fxml");
     }
     @FXML
     private void checkIsValid(ActionEvent actionEvent) {
         try {
             if(Server.enterTheSystem(login_value.getText(),password_value.getText())){
                 System.out.println("You are entered!");
-                try {
-                    Main.loadScene(actionEvent,"client_view.fxml");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+                Main.loadScene(actionEvent,"client_view.fxml"); ///ВОТКНУТЬ В SWITCH
                 try {
                     switch (User.getCurrentRole()) {
                         case "Клиент":
