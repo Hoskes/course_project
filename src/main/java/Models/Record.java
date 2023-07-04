@@ -1,4 +1,4 @@
-package com.example.course_project;
+package Models;
 
 import java.util.LinkedHashMap;
 

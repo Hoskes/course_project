@@ -1,4 +1,4 @@
-package com.example.course_project;
+package Models;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

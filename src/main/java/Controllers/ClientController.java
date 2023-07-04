@@ -1,5 +1,9 @@
-package com.example.course_project;
+package Controllers;
 
+import Models.Model;
+import Models.Profile;
+import Models.UserOrderModel;
+import com.example.course_project.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -38,12 +42,7 @@ public class ClientController {
 
     @FXML
     void initialize() {
-        model = new UserOrderModel(Config.find_user_orders,""+Profile.getId());
-        people_table.setItems(model.getItems());
-        order_id.setCellValueFactory(new PropertyValueFactory<>("id"));;
-        bike_id.setCellValueFactory(new PropertyValueFactory<>("bike_id"));
-        point_string.setCellValueFactory(new PropertyValueFactory<>("point_created_name"));
-        state.setCellValueFactory(new PropertyValueFactory<>("status"));
+        tableInit();
 
         set_role.setText(Profile.getCurrentRole());
         first_name.setText(Profile.getName()[0]);
@@ -63,6 +62,15 @@ public class ClientController {
         adress_point.setItems(choice_box.getPointItems());
         choicebox.setItems(choice_box.getItems());
         choicebox.setValue("No choice");
+        //adress_point.setValue();
+    }
+    private void tableInit(){
+        model = new UserOrderModel(Config.find_user_orders,""+Profile.getId());
+        people_table.setItems(model.getItems());
+        order_id.setCellValueFactory(new PropertyValueFactory<>("id"));;
+        bike_id.setCellValueFactory(new PropertyValueFactory<>("bike_id"));
+        point_string.setCellValueFactory(new PropertyValueFactory<>("point_created_name"));
+        state.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     private static void addListenerNameFormat(TextField t,String regex){
@@ -125,8 +133,9 @@ public class ClientController {
     public void update_bike_status(ActionEvent actionEvent) {
         if(found!=null) {
             choice_box.sendCurrentBikeUpdateStatus(2, found.getId());
-            //model.addOrder();
+            model.addOrder(found,adress_point.getValue());
             initChoice();
+            tableInit();
         }
     }
     @FXML

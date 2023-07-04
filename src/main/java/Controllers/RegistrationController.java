@@ -1,5 +1,7 @@
-package com.example.course_project;
+package Controllers;
 
+import com.example.course_project.Config;
+import com.example.course_project.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +19,7 @@ public class RegistrationController {
     public Button to_enter;
     @FXML
     public void initialize(){
-        addListenerNameFormat(first_name,Config.regex_name);
+        addListenerNameFormat(first_name, Config.regex_name);
         addListenerNameFormat(last_name,Config.regex_name);
         addListenerNameFormat(f_name,"|"+Config.regex_name);
         addListenerNameFormat(login,Config.regex_login);

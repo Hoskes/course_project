@@ -1,4 +1,8 @@
-package com.example.course_project;
+package Models;
+
+import com.example.course_project.Config;
+import com.example.course_project.PasswordHashing;
+import com.example.course_project.Querry;
 
 import java.sql.*;
 
@@ -58,12 +62,12 @@ public class Server {
         return false;
     }
     public static boolean enterTheSystem(String user_login,String user_password) throws SQLException {
-        String pre_query = "SELECT * FROM `authorization` WHERE login=? AND password=?";
+        String pre_query = "SELECT user_id FROM `authorization` WHERE login=? AND password=?";
         PreparedStatement query =connection.prepareStatement(pre_query);
         query.setString(1,user_login);
         query.setString(2,PasswordHashing.hashPassword(user_password));
         ResultSet result = query.executeQuery();
-        if (result.next()==true) {
+        if (result.next()) {
             new Profile(result.getInt(1));
             return true;
         }

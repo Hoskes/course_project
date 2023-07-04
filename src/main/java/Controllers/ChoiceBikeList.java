@@ -1,5 +1,8 @@
-package com.example.course_project;
+package Controllers;
 
+import Models.Model;
+import Models.Server;
+import com.example.course_project.Config;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

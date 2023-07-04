@@ -1,4 +1,4 @@
-package com.example.course_project;
+package Models;
 
 public class Model {
 

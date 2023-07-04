@@ -7,14 +7,16 @@ public class Order {
     private String status;
     private String point_created_name;
     private String user_bike_model;
+    private int point_id;
 
-    public Order(int id, int user_id, int bike_id, String status, String point_created_name, String user_bike_model) {
+    public Order(int id, int user_id, int bike_id, String status, String point_created_name, String user_bike_model, int point_id) {
         this.id = id;
         this.user_id = user_id;
         this.bike_id = bike_id;
         this.status = status;
         this.point_created_name = point_created_name;
         this.user_bike_model = user_bike_model;
+        this.point_id = point_id;
     }
 
     public int getId() {

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course_project.AuthorizationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AuthorizationController">
    <children>
       <TextField fx:id="login_value" layoutX="203.0" layoutY="151.0" prefHeight="26.0" prefWidth="214.0" />
       <Button fx:id="enter_button" layoutX="237.0" layoutY="291.0" mnemonicParsing="false" onAction="#checkIsValid" prefHeight="26.0" prefWidth="126.0" text="Вход" />

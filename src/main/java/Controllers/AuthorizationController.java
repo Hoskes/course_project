@@ -1,5 +1,8 @@
-package com.example.course_project;
+package Controllers;
 
+import com.example.course_project.Main;
+import Models.Profile;
+import Models.Server;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;

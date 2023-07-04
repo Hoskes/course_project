@@ -1,4 +1,6 @@
-package com.example.course_project;
+package Models;
+
+import com.example.course_project.Config;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
