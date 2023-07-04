@@ -1,12 +1,11 @@
 package com.example.course_project;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
@@ -17,6 +16,9 @@ public class ClientController {
     public TableColumn<Order,String> point_string;
     public TableColumn<Order,String> state;
     public Button save_button;
+    public Label transmission_count_label;
+    public Label type_label;
+    public ChoiceBox<String> choicebox;
     @FXML
     private TextField set_role;
     @FXML
@@ -37,6 +39,17 @@ public class ClientController {
         bike_id.setCellValueFactory(new PropertyValueFactory<>("bike_id"));
         point_string.setCellValueFactory(new PropertyValueFactory<>("status"));
         state.setCellValueFactory(new PropertyValueFactory<>("point_created_name"));
+
+        ChoiceList choice_box = new ChoiceList();
+        choicebox.setItems(choice_box.getItems());
+        choicebox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                Model found = choice_box.findInfo(choicebox.getItems().get(t1.intValue()));
+                transmission_count_label.setText(""+found.getTransmission_count());
+                type_label.setText(found.getType());
+            }
+        });
         set_role.setText(Profile.getCurrentRole());
         first_name.setText(Profile.getName()[0]);
         last_name.setText(Profile.getName()[1]);
