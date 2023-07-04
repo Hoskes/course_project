@@ -78,24 +78,36 @@
             </AnchorPane>
         </content>
       </Tab>
-      <Tab text="Создать заказ">
+      <Tab fx:id="create_order" onSelectionChanged="#update_bikes_list" text="Создать заказ">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <AnchorPane layoutX="-3.0" layoutY="9.0" prefHeight="357.0" prefWidth="600.0">
                      <children>
-                        <Button layoutX="194.0" layoutY="256.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="211.0" text="Создать заказ" />
-                        <ChoiceBox fx:id="choicebox" layoutX="43.0" layoutY="98.0" prefWidth="150.0" />
-                        <Label fx:id="type_label" layoutX="428.0" layoutY="52.0" text=" " />
-                        <Label fx:id="transmission_count_label" layoutX="428.0" layoutY="102.0" text=" " />
-                        <Text layoutX="378.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип:">
+                        <Button fx:id="save_changes" layoutX="194.0" layoutY="256.0" mnemonicParsing="false" onAction="#update_bike_status" prefHeight="53.0" prefWidth="211.0" text="Создать заказ" />
+                        <ChoiceBox fx:id="choicebox" layoutX="99.0" layoutY="39.0" onAction="#chamge_list" prefWidth="150.0" />
+                        <Label fx:id="type_label" layoutX="470.0" layoutY="52.0" text=" " />
+                        <Label fx:id="transmission_count_label" layoutX="470.0" layoutY="102.0" text=" " />
+                        <Text layoutX="420.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип:">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Text>
-                        <Text layoutX="272.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество передач:">
+                        <Text layoutX="314.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество передач:">
                            <font>
                               <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="upd_button" layoutX="511.0" layoutY="14.0" mnemonicParsing="false" onAction="#update_choice_list" prefHeight="30.0" prefWidth="74.0" text="Обновить" />
+                        <ChoiceBox fx:id="adress_point" layoutX="99.0" layoutY="137.0" prefHeight="26.0" prefWidth="215.0" />
+                        <Text layoutX="29.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Модель:" wrappingWidth="62.136749267578125">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="43.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Адрес:">
+                           <font>
+                              <Font size="16.0" />
                            </font>
                         </Text>
                      </children>
