@@ -270,12 +270,13 @@ public class Profile {
             sendNewDocs(ser,num);
         }
     }
-    public static void setRole(String role_id){
+    public static void setRole(String role_id,String id_user){
         try {
-            String t = "UPDATE users SET role_id=?)";
+            String t = "UPDATE users SET role_id=? WHERE id=?";
             PreparedStatement query = null;
             query = Server.getConnection().prepareStatement(t);
             query.setString(1, role_id);
+            query.setString(2, id_user);
             query.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

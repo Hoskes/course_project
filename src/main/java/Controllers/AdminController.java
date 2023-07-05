@@ -79,7 +79,7 @@ public class AdminController extends ManagerController {
                         }
                     }
                     if(role!=null&!role.equals("")){
-                        Profile.setRole(""+Server.getServer().getRoleId(role));
+                        Profile.setRole(""+Server.getServer().getRoleId(role),id_user);
                     }
                     if(seria!=null & nomer!=null){
                         if(seria.matches("([0-9]{4})")&nomer.matches("([0-9]{6})")){
