@@ -1,7 +1,7 @@
-package Models;
+package Models.TableModels;
 
+import Models.Server;
 import com.example.course_project.Config;
-import com.example.course_project.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

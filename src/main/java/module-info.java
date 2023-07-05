@@ -12,4 +12,6 @@ module com.example.course_project {
     opens Controllers to javafx.fxml;
     exports Models;
     opens Models to javafx.fxml;
+    exports Models.TableModels;
+    opens Models.TableModels to javafx.fxml;
 }

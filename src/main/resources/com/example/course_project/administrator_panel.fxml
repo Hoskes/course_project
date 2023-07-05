@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ClientController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
   <tabs>
     <Tab closable="false" text="Профиль">
          <content>
@@ -90,6 +90,7 @@
                         <TableView fx:id="people_table" prefHeight="478.0" prefWidth="671.0">
                           <columns>
                             <TableColumn fx:id="order_id" prefWidth="27.999970257282257" text="ID" />
+                              <TableColumn fx:id="user_id" prefWidth="75.0" text="user_id" />
                               <TableColumn fx:id="bike_id" editable="false" prefWidth="50.4000244140625" text="BIKE ID" />
                               <TableColumn fx:id="point_string" editable="false" prefWidth="99.20001220703125" text="Точка отправки" />
                               <TableColumn fx:id="state" editable="false" prefWidth="83.199951171875" text="Статус заказа" />

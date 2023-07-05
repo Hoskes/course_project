@@ -1,12 +1,12 @@
 package Models;
 
+import Models.TableModels.Profile;
 import com.example.course_project.Config;
 import com.example.course_project.PasswordHashing;
-import com.example.course_project.Querry;
 
 import java.sql.*;
 
-public class Server {
+public class Server { //установка соединения с бд + проверка валидности данных при авторизации
     private static Server server;
     private static Connection connection;
     private Server() {
@@ -20,7 +20,7 @@ public class Server {
             //System.out.println(e);
         }
     }
-    public static Server getServer() {
+    public static Server getServer() { //создаем\получаем текущую ссылку на сервер
         if (server == null) {
             server = new Server();
         }
@@ -29,39 +29,10 @@ public class Server {
 
     public static Connection getConnection() {
         return connection;
-    }
+    } //получаем текущее подключение
 
-    public static String returnDefaultQuery(String _query)  {
-        String returnStatement = "";
-        try{
-        String query =_query; ///ТАК НЕЛЬЗЯ, ПЕРЕДЕЛАТЬ ЗАПРОСЫ
-            Statement statement = connection.createStatement();
 
-            ResultSet result = statement.executeQuery(query);
-
-        while(result.next()){
-            int id = result.getInt("id");
-            String name = result.getString("name");
-            returnStatement += id+" "+name+" "+"\n";
-        }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        //connection.close();
-        return returnStatement;
-    }
-    public String returnQuery(String query){
-        return query;
-    }
-    //#####################переделать######################3
-    public boolean checkLogin(String login){
-
-        if(returnDefaultQuery(PasswordHashing.hashPassword(Querry.check_admin_login)).equals(login)){
-            return true;
-        }
-        return false;
-    }
-    public static boolean enterTheSystem(String user_login,String user_password) throws SQLException {
+    public static boolean enterTheSystem(String user_login,String user_password) throws SQLException { //отправка запроса
         String pre_query = "SELECT user_id FROM `authorization` WHERE login=? AND password=?";
         PreparedStatement query =connection.prepareStatement(pre_query);
         query.setString(1,user_login);

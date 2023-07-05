@@ -1,8 +1,9 @@
 package Controllers;
 
-import Models.Model;
-import Models.Profile;
-import Models.UserOrderModel;
+import Models.TableModels.Model;
+import Models.TableModels.Order;
+import Models.TableModels.Profile;
+import Models.TableModels.UserOrderModel;
 import com.example.course_project.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -24,47 +25,55 @@ public class ClientController {
     public Button save_changes;
     public Button upd_button;
     public ChoiceBox<String> adress_point;
+    public PasswordField old_password;
+    public PasswordField new_password;
+    public Tab create_order;
+    public Label set_id;
     @FXML
-    private TextField set_role;
+    public TextField set_role;
     @FXML
-    private TextField first_name;
+    public TextField first_name;
     @FXML
-    private TextField last_name;
+    public TextField last_name;
     @FXML
-    private TextField f_name;
+    public TextField f_name;
     @FXML
-    private TextField adress;
+    public TextField adress;
     @FXML
-    private TableView people_table;
-    private Model found = null;
-    private ChoiceBikeList choice_box;
-    private UserOrderModel model;
+    protected TableView people_table;
+    protected Model found = null;
+    protected ChoiceBikeList choice_box;
+    protected UserOrderModel model;
 
     @FXML
     void initialize() {
-        tableInit();
-
+        tableInit(); //инициируем список переменных посредством запроса
+        //задаем начальные значения
         set_role.setText(Profile.getCurrentRole());
         first_name.setText(Profile.getName()[0]);
         last_name.setText(Profile.getName()[1]);
         f_name.setText(Profile.getName()[2]);
         adress.setText(Profile.getAdress());
         set_role.setText(Profile.getCurrentRole());
-
+        //добавляем форматирование полей
         addListenerNameFormat(first_name,Config.regex_name);
         addListenerNameFormat(last_name,Config.regex_name);
         addListenerNameFormat(f_name,"|"+Config.regex_name);
         addListenerNameFormat(adress,Config.adress);
-        initChoice();
+
+        addListenerNameFormat(new_password,Config.regex_login); //новый пароль на формат
+
+        set_id.setText(""+Profile.getId());
+
+        initChoice(); //инициируем список посредством запроса
     }
     private void initChoice(){
         choice_box = new ChoiceBikeList();
         adress_point.setItems(choice_box.getPointItems());
         choicebox.setItems(choice_box.getItems());
         choicebox.setValue("No choice");
-        //adress_point.setValue();
     }
-    private void tableInit(){
+    protected void tableInit(){
         model = new UserOrderModel(Config.find_user_orders,""+Profile.getId());
         people_table.setItems(model.getItems());
         order_id.setCellValueFactory(new PropertyValueFactory<>("id"));;
@@ -82,7 +91,7 @@ public class ClientController {
             }
         });
     }
-    private static boolean checkFormat(String str,String regex){
+    private static boolean checkFormat(String str,String regex){ //сделано для лучшей читаемости
         if(str.matches(regex)){
             return true;
         }else{
@@ -96,8 +105,7 @@ public class ClientController {
     }
 
     @FXML
-    public void save_changes(ActionEvent actionEvent) {
-        //TextField[] t = {first_name, last_name, f_name};
+    public void save_changes(ActionEvent actionEvent) { //подготовка к сборке запроса по нажатию кнопки
         String changing_list = "";
         ArrayList<String> values= new ArrayList<>();
         if (checkFormat(first_name.getText(), Config.regex_name) & !first_name.getText().equals(Profile.getName()[0])) {
@@ -120,17 +128,35 @@ public class ClientController {
             changing_list+="adress=?, ";
             values.add(adress.getText());
         }
-        if(!changing_list.equals("")) {
-            Profile.updateUserInfo(changing_list.substring(0, changing_list.length() - 2), values);
-            Profile.setNewToDefaultValues();
+        if(!changing_list.equals("")) { //если хотя бы один элемент изменен, то отправляем запрос
+            Profile.updateUserInfo(changing_list.substring(0, changing_list.length() - 2), values); //меняем значения в приложении
+            Profile.setNewToDefaultValues(); //загружаем данные в бд
+
+
         }
+        tryPasswordUpdate(); //пробуем обновить пароль
         //System.out.println(User.getName()[0]);
     }
-
+private void tryPasswordUpdate(){
+    if(new_password.getText().matches(Config.regex_login)) {
+        if (Profile.IsUpdatePassword(Profile.getId(),old_password.getText())) {
+            old_password.setStyle("-fx-text-fill: green; ");
+            new_password.setStyle("-fx-text-fill: green; ");
+            Profile.UpdatePassword(Profile.getId(),new_password.getText());
+        }else{
+            old_password.setStyle("-fx-text-fill: red; ");
+            new_password.setStyle("-fx-text-fill: red; ");
+        }
+    }else {
+        old_password.setStyle("-fx-text-fill: red; ");
+        new_password.setStyle("-fx-text-fill: red; ");
+    }
+}
     public void updatePanel(Event event) {
+        tableInit();
     }
     @FXML
-    public void update_bike_status(ActionEvent actionEvent) {
+    public void update_bike_status(ActionEvent actionEvent) { //отправляем запросы на изменения статуса велосипеда и создание нового заказа
         if(found!=null) {
             choice_box.sendCurrentBikeUpdateStatus(2, found.getId());
             model.addOrder(found,adress_point.getValue());
@@ -139,7 +165,7 @@ public class ClientController {
         }
     }
     @FXML
-    public void chamge_list(ActionEvent contextMenuEvent) {
+    public void chamge_list(ActionEvent contextMenuEvent) { //по выбору значения в списке обновить краткое описание
         if(choicebox.getSelectionModel().getSelectedItem()!=null)
             found = choice_box.findInfo(choicebox.getSelectionModel().getSelectedItem());
         else{

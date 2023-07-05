@@ -1,4 +1,4 @@
-package Models;
+package Models.TableModels;
 
 public class Model {
 

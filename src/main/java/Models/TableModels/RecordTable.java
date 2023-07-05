@@ -1,4 +1,4 @@
-package Models;
+package Models.TableModels;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class RecordTable extends ArrayList<Record> {
     public RecordTable(ResultSet resultSet){
         try {
-            int j = 0;
             while (resultSet.next()){
                 Record record = new Record();
                 for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {

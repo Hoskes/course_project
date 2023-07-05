@@ -1,7 +1,7 @@
 package Controllers;
 
 import com.example.course_project.Main;
-import Models.Profile;
+import Models.TableModels.Profile;
 import Models.Server;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,15 +24,18 @@ public class AuthorizationController {
         try {
             if(Server.enterTheSystem(login_value.getText(),password_value.getText())){
                 System.out.println("You are entered!");
-                Main.loadScene(actionEvent,"client_view.fxml"); ///ВОТКНУТЬ В SWITCH
+                //Main.loadScene(actionEvent,"client_view.fxml"); ///ВОТКНУТЬ В SWITCH
                 try {
+                    System.out.println(Profile.getCurrentRole());
                     switch (Profile.getCurrentRole()) {
+
                         case "Клиент":
-                            Main.loadScene(actionEvent, "");
+                            Main.loadScene(actionEvent, "client_view.fxml");
                             break;
                         case "Менеджер проката":
                             break;
                         case "Администратор":
+                            Main.loadScene(actionEvent, "administrator_panel.fxml");
                             break;
                     }
                 }catch (Exception e){

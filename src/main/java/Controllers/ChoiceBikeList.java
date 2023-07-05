@@ -1,6 +1,6 @@
 package Controllers;
 
-import Models.Model;
+import Models.TableModels.Model;
 import Models.Server;
 import com.example.course_project.Config;
 import javafx.collections.FXCollections;
@@ -42,7 +42,7 @@ public class ChoiceBikeList {
                 Statement statement = Server.getConnection().createStatement();
                 ResultSet result = statement.executeQuery(Config.all_points);
                 while (result.next()){
-                    System.out.println("#");
+                    //System.out.println("#");
                     points.add(result.getString("adress"));
                 }
             } catch (SQLException e) {
