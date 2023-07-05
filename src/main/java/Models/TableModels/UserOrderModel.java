@@ -37,12 +37,12 @@ public class UserOrderModel {
     public ObservableList<Order> getItems() {
         return items;
     }
-    public void addOrder(Model model,String adress_point){
+    public void addOrder(int user_id,Model model,String adress_point){
             int adress_point_id = findOrderId(adress_point);
             String pre_query = "INSERT INTO `orders`(`user_id`, `bike_id`, `status_id`, `point_created`) VALUES (?,?,?,?)";
             try {
                 PreparedStatement query = Server.getConnection().prepareStatement(pre_query);
-                query.setInt(1, Profile.getId());
+                query.setInt(1, user_id);
                 query.setInt(2, model.getId());
                 query.setInt(3, 1);
                 query.setInt(4, adress_point_id);
@@ -62,6 +62,19 @@ public class UserOrderModel {
             return result.getInt(1);
         }catch (SQLException e){
             throw new RuntimeException();
+        }
+    }
+    public static void updateOrderState(int order_id, String state){
+            int state_id = Server.getServer().getStatesId(state);
+        String pre_query = Config.update_orders_state;
+        try {
+            PreparedStatement query = Server.getConnection().prepareStatement(pre_query);
+            query.setInt(1, state_id);
+            query.setInt(2, order_id);
+            query.executeUpdate();
+            System.out.println("Update order status Task completed");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

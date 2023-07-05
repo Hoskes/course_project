@@ -40,6 +40,7 @@ public class AuthorizationController {
                     }
                 }catch (Exception e){
                     System.out.println("ОШИБКА В checkisValid");
+                    throw new RuntimeException();
                 }
             }
         } catch (SQLException e) {

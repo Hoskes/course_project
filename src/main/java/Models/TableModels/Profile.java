@@ -18,6 +18,7 @@ public class Profile {
     private static int pass_id = 0;
     private static String adress;
     private static Record t;
+    private Record found_user;
 
     public Profile(String reg_first_name, String reg_last_name, String reg_f_name, String adress, int role_id,String login,String password) throws SQLException{
         name[0]=reg_first_name;
@@ -42,11 +43,15 @@ public class Profile {
             throw new RuntimeException();
         }
     }
-    public Profile(int user_id) throws SQLException {
+    public Profile(int user_id,boolean is_your_profile) throws SQLException {
         String pre_query = Config.find_user_by_id;
         PreparedStatement query = Server.getConnection().prepareStatement(pre_query);
         query.setInt(1,user_id);
-        t = new Record(query.executeQuery());
+        if (is_your_profile ) {
+            t = new Record(query.executeQuery());
+        }else{
+            found_user = new Record(query.executeQuery());
+        }
         setDefaultValues();
         //System.out.println(id+" "+name[0]+" "+name[1]+" "+name[2]+" "+adress+" "+role);
     }
@@ -141,6 +146,11 @@ public class Profile {
         r.next();
         return r.getInt(1);
     }
+
+    public Record getFound_user() {
+        return found_user;
+    }
+
     public static boolean IsUpdatePassword(int user_id, String input_old_password){
         String pre_query = Config.change_password;
         String hashed_old_password = PasswordHashing.hashPassword(input_old_password);
@@ -195,5 +205,27 @@ public class Profile {
             throw new RuntimeException(e);
         }
     }
+    public static void sendDocs(String pass_ser,String pass_num){
+        PreparedStatement query = null;
+        PreparedStatement new_query = null;
+        String result_string = null;
+        int docs_id =0;
+        try {
+            query = Server.getConnection().prepareStatement(Config.send_docs);
+            query.setString(1,pass_ser);
+            query.setString(2,pass_num);
+            query.setString(3,pass_ser);
+            query.setString(4,pass_num);
+            ResultSet resultSet = query.executeQuery();
+            resultSet.next();
+            docs_id = resultSet.getInt(1);
+            new_query = Server.getConnection().prepareStatement(Config.update_user_docs_id);
+            new_query.setInt(1,docs_id);
+            query.setInt(2,Profile.getId());
+            query.executeUpdate();
 
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

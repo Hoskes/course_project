@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManagerController">
   <tabs>
     <Tab closable="false" text="Профиль">
          <content>
@@ -81,23 +81,54 @@
                </children>
             </AnchorPane>
          </content></Tab>
-      <Tab closable="false" onSelectionChanged="#updatePanel" text="Таблица заказов">
+      <Tab closable="false" text="Заказы">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ScrollPane prefHeight="371.0" prefWidth="600.0">
+                  <ScrollPane prefHeight="371.0" prefWidth="358.0">
                      <content>
-                        <TableView fx:id="people_table" prefHeight="478.0" prefWidth="671.0">
+                        <TableView fx:id="people_table" prefHeight="478.0" prefWidth="342.0">
                           <columns>
                             <TableColumn fx:id="order_id" prefWidth="27.999970257282257" text="ID" />
-                              <TableColumn fx:id="user_id" prefWidth="75.0" text="user_id" />
-                              <TableColumn fx:id="bike_id" editable="false" prefWidth="50.4000244140625" text="BIKE ID" />
-                              <TableColumn fx:id="point_string" editable="false" prefWidth="99.20001220703125" text="Точка отправки" />
-                              <TableColumn fx:id="state" editable="false" prefWidth="83.199951171875" text="Статус заказа" />
+                              <TableColumn fx:id="user_id" prefWidth="51.19997787475586" text="user_id" />
+                              <TableColumn fx:id="bike_id" editable="false" prefWidth="51.20001220703125" text="BIKE ID" />
+                              <TableColumn fx:id="point_string" editable="false" prefWidth="115.20001220703125" text="Точка отправки" />
+                              <TableColumn fx:id="state" editable="false" prefWidth="92.80000305175781" text="Статус заказа" />
                           </columns>
                         </TableView>
                      </content>
                   </ScrollPane>
+                  <Text layoutX="407.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Принять заказ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="id_text_label" layoutX="409.0" layoutY="56.0" prefHeight="18.0" prefWidth="116.0" text="T">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="username_label" layoutX="409.0" layoutY="96.0" prefHeight="30.0" prefWidth="187.0" text="T">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="state_box" layoutX="402.0" layoutY="194.0" prefWidth="150.0" />
+                  <Text layoutX="370.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="360.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="394.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Новый статус заказа">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="allow_button" layoutX="404.0" layoutY="271.0" mnemonicParsing="false" onAction="#allow" prefHeight="45.0" prefWidth="150.0" text="Подтвердить" />
                </children>
             </AnchorPane>
         </content>
@@ -109,7 +140,7 @@
                   <AnchorPane layoutX="-3.0" layoutY="9.0" prefHeight="357.0" prefWidth="600.0">
                      <children>
                         <Button fx:id="save_changes" layoutX="194.0" layoutY="256.0" mnemonicParsing="false" onAction="#update_bike_status" prefHeight="53.0" prefWidth="211.0" text="Создать заказ" />
-                        <ChoiceBox fx:id="choicebox" layoutX="99.0" layoutY="39.0" onAction="#chamge_list" prefWidth="150.0" />
+                        <ChoiceBox fx:id="choicebox" layoutX="101.0" layoutY="145.0" onAction="#chamge_list" prefWidth="150.0" />
                         <Label fx:id="type_label" layoutX="470.0" layoutY="52.0" text=" " />
                         <Label fx:id="transmission_count_label" layoutX="470.0" layoutY="102.0" text=" " />
                         <Text layoutX="420.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Тип:">
@@ -123,21 +154,28 @@
                            </font>
                         </Text>
                         <Button fx:id="upd_button" layoutX="511.0" layoutY="14.0" mnemonicParsing="false" onAction="#update_choice_list" prefHeight="30.0" prefWidth="74.0" text="Обновить" />
-                        <ChoiceBox fx:id="adress_point" layoutX="99.0" layoutY="137.0" prefHeight="26.0" prefWidth="215.0" />
-                        <Text layoutX="29.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Модель:" wrappingWidth="62.136749267578125">
+                        <ChoiceBox fx:id="adress_point" layoutX="101.0" layoutY="185.0" prefHeight="26.0" prefWidth="215.0" />
+                        <Text layoutX="31.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Модель:" wrappingWidth="62.136749267578125">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Text>
-                        <Text layoutX="43.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Адрес:">
+                        <Text layoutX="45.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Адрес:">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Text>
+                        <TextField fx:id="zakaz_on_user_id" layoutX="101.0" layoutY="76.0" />
+                        <Text layoutX="33.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID клиента:" />
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Принять заказ">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </content>
       </Tab>
   </tabs>

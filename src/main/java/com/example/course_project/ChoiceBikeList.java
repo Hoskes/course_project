@@ -1,4 +1,4 @@
-package Controllers;
+package com.example.course_project;
 
 import Models.TableModels.Model;
 import Models.Server;

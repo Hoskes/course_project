@@ -1,8 +1,12 @@
 package Models;
 
+import Models.TableModels.Order;
 import Models.TableModels.Profile;
+
 import com.example.course_project.Config;
 import com.example.course_project.PasswordHashing;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 
@@ -39,10 +43,61 @@ public class Server { //установка соединения с бд + про
         query.setString(2,PasswordHashing.hashPassword(user_password));
         ResultSet result = query.executeQuery();
         if (result.next()) {
-            new Profile(result.getInt(1));
+            new Profile(result.getInt(1),true);
             return true;
         }
         return false;
     }
+    public ObservableList<String> getStates(String str){
+        ObservableList<String> items = FXCollections.observableArrayList();
+        try {
+            Statement statement = Server.getConnection().createStatement();
+            ResultSet result = statement.executeQuery(str);
+            while (result.next()){
+                items.add(result.getString(2));
+                System.out.println(result.getString(2));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return items;
+    }
+    public int getStatesId(String s){
+        try {
+            PreparedStatement query = connection.prepareStatement(Config.find_id_by_state);
+            query.setString(1, s);
+            ResultSet result = query.executeQuery();
+            result.next();
+            return result.getInt(1);
+        }catch (SQLException e){
+            throw new RuntimeException();
+        }
+    }
+    public boolean isUserInSystem(String s){
+        try {
+            PreparedStatement query = connection.prepareStatement(Config.find_user_by_id);
+            query.setString(1, s);
+            ResultSet result = query.executeQuery();
+            if(result.next()){
+                return true;
+            }
+            else return false;
+        }catch (SQLException e){
+            return false;
+        }
+    }
+    public boolean isUserDocsInSystem(int id){
+        try {
+            PreparedStatement query = connection.prepareStatement(Config.find_user_docs);
+            query.setInt(1, id);
+            ResultSet result = query.executeQuery();
+            if(result.next()){
+                return true;
+            }
+            else return false;
+        }catch (SQLException e){
+            return false;
+        }
 
+    }
 }

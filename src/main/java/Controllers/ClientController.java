@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Server;
 import Models.TableModels.Model;
 import Models.TableModels.Order;
 import Models.TableModels.Profile;
@@ -8,9 +9,13 @@ import com.example.course_project.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClientController {
@@ -40,7 +45,7 @@ public class ClientController {
     @FXML
     public TextField adress;
     @FXML
-    protected TableView people_table;
+    protected TableView<Order> people_table;
     protected Model found = null;
     protected ChoiceBikeList choice_box;
     protected UserOrderModel model;
@@ -67,7 +72,7 @@ public class ClientController {
 
         initChoice(); //инициируем список посредством запроса
     }
-    private void initChoice(){
+    protected void initChoice(){
         choice_box = new ChoiceBikeList();
         adress_point.setItems(choice_box.getPointItems());
         choicebox.setItems(choice_box.getItems());
@@ -82,7 +87,7 @@ public class ClientController {
         state.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
-    private static void addListenerNameFormat(TextField t,String regex){
+    protected static void addListenerNameFormat(TextField t,String regex){
         t.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.matches(regex)) {
                 t.setStyle("-fx-text-fill: black; ");
@@ -91,7 +96,7 @@ public class ClientController {
             }
         });
     }
-    private static boolean checkFormat(String str,String regex){ //сделано для лучшей читаемости
+    protected static boolean checkFormat(String str,String regex){ //сделано для лучшей читаемости
         if(str.matches(regex)){
             return true;
         }else{
@@ -137,7 +142,7 @@ public class ClientController {
         tryPasswordUpdate(); //пробуем обновить пароль
         //System.out.println(User.getName()[0]);
     }
-private void tryPasswordUpdate(){
+protected void tryPasswordUpdate(){
     if(new_password.getText().matches(Config.regex_login)) {
         if (Profile.IsUpdatePassword(Profile.getId(),old_password.getText())) {
             old_password.setStyle("-fx-text-fill: green; ");
@@ -152,16 +157,31 @@ private void tryPasswordUpdate(){
         new_password.setStyle("-fx-text-fill: red; ");
     }
 }
-    public void updatePanel(Event event) {
-        tableInit();
-    }
+//    public void updatePanel(Event event) {
+//        tableInit();
+//    }
     @FXML
     public void update_bike_status(ActionEvent actionEvent) { //отправляем запросы на изменения статуса велосипеда и создание нового заказа
-        if(found!=null) {
-            choice_box.sendCurrentBikeUpdateStatus(2, found.getId());
-            model.addOrder(found,adress_point.getValue());
-            initChoice();
-            tableInit();
+        if (found != null) {
+            if (!Server.getServer().isUserDocsInSystem(Profile.getId())) {
+                try {
+                    Stage stage = new Stage();
+                    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("docs+page.fxml"));
+                    Scene scene = new Scene(fxmlLoader.load());
+                    stage.setTitle("Insert docs!");
+                    stage.setScene(scene);
+                    stage.alwaysOnTopProperty();
+                    stage.show();
+
+                } catch (IOException e) {
+                    System.out.println("docs_fail");
+                }
+                choice_box.sendCurrentBikeUpdateStatus(2, found.getId());
+                model.addOrder(Profile.getId(), found, adress_point.getValue());
+                initChoice();
+                tableInit();
+            } else {
+            }
         }
     }
     @FXML
@@ -191,4 +211,5 @@ private void tryPasswordUpdate(){
 
     public void update_bikes_list(Event event) {
     }
+
 }
