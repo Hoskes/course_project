@@ -38,7 +38,7 @@ public class Profile {
             id = getGeneratedProfileId();
 
             t = new Record(""+id,reg_first_name,reg_last_name,reg_f_name,adress);
-            setAuthorizationInfo(login,password);
+            setAuthorizationInfo(Profile.getId(),login,password);
         }catch (SQLException e){
             throw new RuntimeException();
         }
@@ -53,7 +53,7 @@ public class Profile {
             found_user = new Record(query.executeQuery());
         }
         setDefaultValues();
-        //System.out.println(id+" "+name[0]+" "+name[1]+" "+name[2]+" "+adress+" "+role);
+        ////System.out.println(id+" "+name[0]+" "+name[1]+" "+name[2]+" "+adress+" "+role);
     }
 
     public static Profile getUser() {
@@ -98,6 +98,8 @@ public class Profile {
         }else
             return role;
     }
+
+
     public void UpdateUserValue(String key,String value){
         t.get(0).replace(key, value);
     }
@@ -111,11 +113,11 @@ public class Profile {
 
     }
     public static void setNewToDefaultValues(){
-        t.get(0).replace("id",id+"");
-        t.get(0).replace("first_name",name[0]);
-        t.get(0).replace("last_name",name[1]);
-        t.get(0).replace("last_name",name[2]);
-        t.get(0).replace("last_name",adress);
+        t.replace("id",id+"");
+        t.replace("first_name",name[0]);
+        t.replace("last_name",name[1]);
+        t.replace("last_name",name[2]);
+        t.replace("last_name",adress);
     }
     public static boolean updateUserInfo(String column, ArrayList<String> values){
         if(values.size()>0 & column.split(" ").length==values.size()) {
@@ -126,7 +128,6 @@ public class Profile {
                 for (int i = 0; i < values.size(); i++) {
                     query.setString(i+1, values.get(i));
                 }
-                //System.out.println(pre_query);
                 query.executeUpdate();
                 return true;
             } catch (SQLException e) {
@@ -163,10 +164,10 @@ public class Profile {
             ResultSet result = query.executeQuery();
             if(result.next()){
                 result_string = result.getString(1);
-                System.out.println("Password can be changed!");
+                //System.out.println("Password can be changed!");
                 return true;
             }else{
-                System.out.println("Password cant be changed!");
+                //System.out.println("Password cant be changed!");
                 return false;
             }
         } catch (SQLException e) {
@@ -189,7 +190,7 @@ public class Profile {
         }
 
     }
-    private void setAuthorizationInfo(String login,String password){
+    private void setAuthorizationInfo(int id,String login,String password){
         String pre_query = Config.create_authorization_record;
         String hashed_old_password = PasswordHashing.hashPassword(password);
         PreparedStatement query = null;
@@ -205,25 +206,77 @@ public class Profile {
             throw new RuntimeException(e);
         }
     }
-    public static void sendDocs(String pass_ser,String pass_num){
+    public static void sendNewDocs(String pass_ser, String pass_num){
         PreparedStatement query = null;
         PreparedStatement new_query = null;
+        PreparedStatement second_query = null;
         String result_string = null;
         int docs_id =0;
         try {
             query = Server.getConnection().prepareStatement(Config.send_docs);
             query.setString(1,pass_ser);
             query.setString(2,pass_num);
-            query.setString(3,pass_ser);
-            query.setString(4,pass_num);
-            ResultSet resultSet = query.executeQuery();
+            query.executeUpdate();
+            new_query = Server.getConnection().prepareStatement(Config.find_docs_id);
+            new_query.setString(1,pass_ser);
+            new_query.setString(2,pass_num);
+            ResultSet resultSet = new_query.executeQuery();
             resultSet.next();
             docs_id = resultSet.getInt(1);
-            new_query = Server.getConnection().prepareStatement(Config.update_user_docs_id);
-            new_query.setInt(1,docs_id);
-            query.setInt(2,Profile.getId());
+            pass_id = docs_id;
+            second_query = Server.getConnection().prepareStatement(Config.update_user_docs_id);
+            second_query.setInt(1,docs_id);
+            second_query.setInt(2,Profile.getId());
+            second_query.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void ChangeAuthorizeElement(boolean is_login, String val,String id){
+        try {
+            String t = "UPDATE authorization SET ";
+            String value = "";
+            PreparedStatement query = null;
+            if (is_login) {
+                t += "login=?";
+                value = val;
+            } else {
+                t += "password=?";
+                value = PasswordHashing.hashPassword(val);
+            }
+            t+="WHERE user_id =?";
+            query = Server.getConnection().prepareStatement(t);
+            query.setString(1, value);
+            query.setString(2, id);
             query.executeUpdate();
-
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void sendDocs(String id,String ser,String num){
+        if(Server.getServer().isUserDocsInSystem(Integer.parseInt(id))){
+            try {
+                String t = "UPDATE docs_data SET pass_ser=?,pass_num=? WHERE id=(SELECT pass_id FROM users WHERE id=?)";
+                PreparedStatement query = null;
+                query = Server.getConnection().prepareStatement(t);
+                query.setString(1, ser);
+                query.setString(2, num);
+                query.setString(3, id);
+                query.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            sendNewDocs(ser,num);
+        }
+    }
+    public static void setRole(String role_id){
+        try {
+            String t = "UPDATE users SET role_id=?)";
+            PreparedStatement query = null;
+            query = Server.getConnection().prepareStatement(t);
+            query.setString(1, role_id);
+            query.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

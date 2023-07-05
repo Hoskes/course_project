@@ -42,7 +42,7 @@ public class ChoiceBikeList {
                 Statement statement = Server.getConnection().createStatement();
                 ResultSet result = statement.executeQuery(Config.all_points);
                 while (result.next()){
-                    //System.out.println("#");
+                    ////System.out.println("#");
                     points.add(result.getString("adress"));
                 }
             } catch (SQLException e) {
@@ -80,7 +80,7 @@ public class ChoiceBikeList {
             query.setInt(1, cur_state_id);
             query.setInt(2, bike_id);
             query.executeUpdate();
-            System.out.println("Task completed");
+            //System.out.println("Task completed");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

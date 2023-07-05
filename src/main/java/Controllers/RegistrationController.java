@@ -51,7 +51,7 @@ public class RegistrationController {
         });
     }
     public void checkFirstNameFormat(InputMethodEvent inputMethodEvent) {
-        System.out.println("###");
+        //System.out.println("###");
     }
 
     public void checkLarstNameFormat(InputMethodEvent inputMethodEvent) {

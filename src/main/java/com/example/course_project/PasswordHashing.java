@@ -29,6 +29,6 @@ public class PasswordHashing {
     public static void main(String[] args) {
         String password = "admin";
         String hashedPassword = hashPassword(password);
-        System.out.println(hashedPassword);
+        //System.out.println(hashedPassword);
     }
 }

@@ -21,7 +21,7 @@ public class Server { //установка соединения с бд + про
                     Config.db_user, Config.db_pass);
         }
         catch(ClassNotFoundException | SQLException e){
-            //System.out.println(e);
+            ////System.out.println(e);
         }
     }
     public static Server getServer() { //создаем\получаем текущую ссылку на сервер
@@ -55,7 +55,7 @@ public class Server { //установка соединения с бд + про
             ResultSet result = statement.executeQuery(str);
             while (result.next()){
                 items.add(result.getString(2));
-                System.out.println(result.getString(2));
+                //System.out.println(result.getString(2));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -65,6 +65,19 @@ public class Server { //установка соединения с бд + про
     public int getStatesId(String s){
         try {
             PreparedStatement query = connection.prepareStatement(Config.find_id_by_state);
+
+            query.setString(1, s);
+            ResultSet result = query.executeQuery();
+            result.next();
+            return result.getInt(1);
+        }catch (SQLException e){
+            throw new RuntimeException();
+        }
+    }
+    public int getRoleId(String s){
+        try {
+            PreparedStatement query = connection.prepareStatement("SELECT id FROM roles WHERE name =?");
+
             query.setString(1, s);
             ResultSet result = query.executeQuery();
             result.next();
@@ -91,7 +104,8 @@ public class Server { //установка соединения с бд + про
             PreparedStatement query = connection.prepareStatement(Config.find_user_docs);
             query.setInt(1, id);
             ResultSet result = query.executeQuery();
-            if(result.next()){
+            result.next();
+            if(result.getString(1)!="" & result.getString(1)!=null){
                 return true;
             }
             else return false;

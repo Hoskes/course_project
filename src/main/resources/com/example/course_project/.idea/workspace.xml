@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a2f5245b-0d5b-4530-9e07-497fd3599929" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../../java/Controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Controllers/ManagerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../java/Controllers/AuthorizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Controllers/AuthorizationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../java/Controllers/ChoiceBikeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/com/example/course_project/ChoiceBikeList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../java/Controllers/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Controllers/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../java/Controllers/ManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Controllers/ManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../java/Controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Controllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../java/DocsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Models/TableModels/DocsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../java/Models/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Models/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../java/Models/TableModels/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Models/TableModels/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../java/Models/TableModels/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Models/TableModels/Record.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../java/Models/TableModels/UserOrderModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/Models/TableModels/UserOrderModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../java/com/example/course_project/ChoiceBikeList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/com/example/course_project/ChoiceBikeList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../../java/com/example/course_project/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/com/example/course_project/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../../java/com/example/course_project/Querry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../java/com/example/course_project/PasswordHashing.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../java/com/example/course_project/PasswordHashing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/administrator_panel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/administrator_panel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client_view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client_view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs+page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/docs+page.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,13 +35,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Андрей/Desktop/course_project/src/main/resources/com/example/course_project&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Андрей/Desktop/course_project"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

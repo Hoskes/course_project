@@ -111,6 +111,7 @@ public class ClientController {
 
     @FXML
     public void save_changes(ActionEvent actionEvent) { //подготовка к сборке запроса по нажатию кнопки
+        tableInit();
         String changing_list = "";
         ArrayList<String> values= new ArrayList<>();
         if (checkFormat(first_name.getText(), Config.regex_name) & !first_name.getText().equals(Profile.getName()[0])) {
@@ -140,7 +141,7 @@ public class ClientController {
 
         }
         tryPasswordUpdate(); //пробуем обновить пароль
-        //System.out.println(User.getName()[0]);
+        ////System.out.println(User.getName()[0]);
     }
 protected void tryPasswordUpdate(){
     if(new_password.getText().matches(Config.regex_login)) {
@@ -163,6 +164,7 @@ protected void tryPasswordUpdate(){
     @FXML
     public void update_bike_status(ActionEvent actionEvent) { //отправляем запросы на изменения статуса велосипеда и создание нового заказа
         if (found != null) {
+            System.out.println(Server.getServer().isUserDocsInSystem(Profile.getId()));
             if (!Server.getServer().isUserDocsInSystem(Profile.getId())) {
                 try {
                     Stage stage = new Stage();
@@ -176,11 +178,12 @@ protected void tryPasswordUpdate(){
                 } catch (IOException e) {
                     System.out.println("docs_fail");
                 }
+
+            } else {
                 choice_box.sendCurrentBikeUpdateStatus(2, found.getId());
                 model.addOrder(Profile.getId(), found, adress_point.getValue());
                 initChoice();
                 tableInit();
-            } else {
             }
         }
     }
@@ -192,7 +195,7 @@ protected void tryPasswordUpdate(){
             found=null;
         }
         if (found != null) {
-            System.out.println(found.getModel_name());
+            //System.out.println(found.getModel_name());
             transmission_count_label.setText("" + found.getTransmission_count());
             type_label.setText(found.getType());transmission_count_label.setStyle("-fx-text-fill: black; ");
             type_label.setStyle("-fx-text-fill: black; ");

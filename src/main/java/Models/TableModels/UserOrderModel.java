@@ -47,7 +47,7 @@ public class UserOrderModel {
                 query.setInt(3, 1);
                 query.setInt(4, adress_point_id);
                 query.executeUpdate();
-                System.out.println("Task completed");
+                //System.out.println("Task completed");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -72,7 +72,7 @@ public class UserOrderModel {
             query.setInt(1, state_id);
             query.setInt(2, order_id);
             query.executeUpdate();
-            System.out.println("Update order status Task completed");
+            //System.out.println("Update order status Task completed");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

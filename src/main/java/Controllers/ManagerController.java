@@ -69,11 +69,11 @@ public class ManagerController extends ClientController {
             }
         });
     }
-
+    @FXML
     public void allow(ActionEvent actionEvent) {
         if (people_table.getSelectionModel().getSelectedItem().getStatus()!=null & state_box.getValue()!=null & !people_table.getSelectionModel().getSelectedItem().getStatus().equals(state_box.getValue())) {
-            System.out.println(people_table.getSelectionModel().getSelectedItem().getStatus());
-            System.out.println(state_box.getValue());
+            //System.out.println(people_table.getSelectionModel().getSelectedItem().getStatus());
+            //System.out.println(state_box.getValue());
             UserOrderModel.updateOrderState(people_table.getSelectionModel().getSelectedItem().getId(),state_box.getValue());
             tableInit();
         }

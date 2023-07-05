@@ -23,23 +23,24 @@ public class AuthorizationController {
     private void checkIsValid(ActionEvent actionEvent) {
         try {
             if(Server.enterTheSystem(login_value.getText(),password_value.getText())){
-                System.out.println("You are entered!");
+                //System.out.println("You are entered!");
                 //Main.loadScene(actionEvent,"client_view.fxml"); ///ВОТКНУТЬ В SWITCH
                 try {
-                    System.out.println(Profile.getCurrentRole());
+                    //System.out.println(Profile.getCurrentRole());
                     switch (Profile.getCurrentRole()) {
 
                         case "Клиент":
                             Main.loadScene(actionEvent, "client_view.fxml");
                             break;
                         case "Менеджер проката":
+                            Main.loadScene(actionEvent, "administrator_panel.fxml");
                             break;
                         case "Администратор":
-                            Main.loadScene(actionEvent, "administrator_panel.fxml");
+                            Main.loadScene(actionEvent, "main_admin_panel.fxml");
                             break;
                     }
                 }catch (Exception e){
-                    System.out.println("ОШИБКА В checkisValid");
+                    ////System.out.println("ОШИБКА В checkisValid");
                     throw new RuntimeException();
                 }
             }

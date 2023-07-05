@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ManagerController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
   <tabs>
     <Tab closable="false" text="Профиль">
          <content>
@@ -169,6 +169,38 @@
                         <Text layoutX="33.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID клиента:" />
                      </children>
                   </AnchorPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Изменить данные пользователя">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="user_change_id" layoutX="72.0" layoutY="78.0" />
+                  <TextField fx:id="login_change" layoutX="72.0" layoutY="146.0" />
+                  <TextField fx:id="password_change" layoutX="72.0" layoutY="181.0" />
+                  <Text layoutX="50.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+                  <Text layoutX="36.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Роль:" />
+                  <ChoiceBox fx:id="role_change_id" layoutX="72.0" layoutY="112.0" prefWidth="150.0" />
+                  <Text layoutX="33.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин" />
+                  <Text layoutX="22.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль" />
+                  <Text layoutX="57.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пользователь">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="194.0" layoutY="20.0" prefHeight="30.0" prefWidth="386.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ser_pass_field" layoutX="417.0" layoutY="140.0" />
+                  <TextField fx:id="num_pass_id" layoutX="417.0" layoutY="178.0" />
+                  <Text layoutX="436.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Паспортные данные" />
+                  <Text layoutX="365.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Серия" />
+                  <Text layoutX="361.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер" />
+                  <Button fx:id="user_changes_save" layoutX="223.0" layoutY="282.0" mnemonicParsing="false" onAction="#saveUserChangedInfo" prefHeight="40.0" prefWidth="153.0" text="Сохранить изменения" />
                </children>
             </AnchorPane>
         </content>

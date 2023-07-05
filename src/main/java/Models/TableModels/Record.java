@@ -29,7 +29,7 @@ public class Record extends LinkedHashMap<String,String>{ //обернуть о�
         put(column_name,column_value);
     }
     public void view(){
-            System.out.println(entrySet());
+            //System.out.println(entrySet());
     }
     public String find(String str){
         return this.get(str);
