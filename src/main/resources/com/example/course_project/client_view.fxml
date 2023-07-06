@@ -81,7 +81,7 @@
                </children>
             </AnchorPane>
          </content></Tab>
-      <Tab closable="false"  text="Таблица заказов">
+      <Tab closable="false" text="Таблица заказов">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -135,6 +135,29 @@
                         </Text>
                      </children>
                   </AnchorPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="create_user_table" text="Таблица пользователей">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ScrollPane fx:id="UsersPane" layoutX="26.0" layoutY="24.0" prefHeight="323.0" prefWidth="273.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="407.0" prefWidth="254.0">
+                           <children>
+                              <TableView fx:id="table_user" prefHeight="200.0" prefWidth="255.0">
+                                <columns>
+                                  <TableColumn fx:id="first_name_user" prefWidth="75.0" text="first_name" />
+                                  <TableColumn fx:id="last_name_user" prefWidth="75.0" text="last_name" />
+                                    <TableColumn fx:id="f_name_user" prefWidth="75.0" text="f_name" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
         </content>

@@ -1,25 +1,16 @@
 package Controllers;
 
 import Models.Server;
-import Models.TableModels.Order;
-import Models.TableModels.Profile;
+import Models.TableModels.*;
 import Models.TableModels.Record;
-import Models.TableModels.UserOrderModel;
 import com.example.course_project.Config;
-import com.example.course_project.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class ManagerController extends ClientController {
@@ -74,7 +65,7 @@ public class ManagerController extends ClientController {
         if (people_table.getSelectionModel().getSelectedItem().getStatus()!=null & state_box.getValue()!=null & !people_table.getSelectionModel().getSelectedItem().getStatus().equals(state_box.getValue())) {
             //System.out.println(people_table.getSelectionModel().getSelectedItem().getStatus());
             //System.out.println(state_box.getValue());
-            UserOrderModel.updateOrderState(people_table.getSelectionModel().getSelectedItem().getId(),state_box.getValue());
+            UserModel.updateOrderState(people_table.getSelectionModel().getSelectedItem().getId(),state_box.getValue());
             tableInit();
         }
     }

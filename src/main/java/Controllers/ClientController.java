@@ -1,10 +1,7 @@
 package Controllers;
 
 import Models.Server;
-import Models.TableModels.Model;
-import Models.TableModels.Order;
-import Models.TableModels.Profile;
-import Models.TableModels.UserOrderModel;
+import Models.TableModels.*;
 import com.example.course_project.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -44,6 +41,12 @@ public class ClientController {
     public TextField f_name;
     @FXML
     public TextField adress;
+    public Tab create_user_table;
+    public TableColumn f_name_user;
+    public TableColumn last_name_user;
+    public TableColumn first_name_user;
+    public TableView table_user;
+    public ScrollPane UsersPane;
     @FXML
     protected TableView<Order> people_table;
     protected Model found = null;

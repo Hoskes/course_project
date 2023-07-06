@@ -195,12 +195,26 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="ser_pass_field" layoutX="417.0" layoutY="140.0" />
-                  <TextField fx:id="num_pass_id" layoutX="417.0" layoutY="178.0" />
-                  <Text layoutX="436.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Паспортные данные" />
-                  <Text layoutX="365.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Серия" />
-                  <Text layoutX="361.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер" />
-                  <Button fx:id="user_changes_save" layoutX="223.0" layoutY="282.0" mnemonicParsing="false" onAction="#saveUserChangedInfo" prefHeight="40.0" prefWidth="153.0" text="Сохранить изменения" />
+                  <TextField fx:id="ser_pass_field" layoutX="74.0" layoutY="246.0" />
+                  <TextField fx:id="num_pass_id" layoutX="74.0" layoutY="284.0" />
+                  <Text layoutX="93.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Паспортные данные" />
+                  <Text layoutX="22.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Серия" />
+                  <Text layoutX="18.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер" />
+                  <Button fx:id="user_changes_save" layoutX="74.0" layoutY="321.0" mnemonicParsing="false" onAction="#saveUserChangedInfo" prefHeight="26.0" prefWidth="149.0" text="Сохранить изменения" />
+                  <ScrollPane layoutX="257.0" layoutY="67.0" prefHeight="200.0" prefWidth="307.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="p_table" layoutX="6.0" prefHeight="394.0" prefWidth="278.0">
+                                <columns>
+                                  <TableColumn fx:id="first_name_set" prefWidth="75.0" text="first_name" />
+                                  <TableColumn fx:id="last_name_set" prefWidth="75.0" text="last_name" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
         </content>

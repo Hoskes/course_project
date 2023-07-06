@@ -1,18 +1,14 @@
 package Controllers;
 
-import Controllers.ManagerController;
 import Models.Server;
 import Models.TableModels.Profile;
-import com.example.course_project.Config;
-import com.example.course_project.PasswordHashing;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import Models.TableModels.User;
+import Models.TableModels.UserModel;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.example.course_project.Config;
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AdminController extends ManagerController {
 
@@ -23,8 +19,14 @@ public class AdminController extends ManagerController {
     public TextField ser_pass_field;
     public TextField num_pass_id;
     public Button user_changes_save;
-        @Override
+    public TableColumn<User, String> first_name_set;
+    public TableColumn<User, String> last_name_set;
+    public TableView<User> p_table;
+
+    @Override
     void initialize() {
+        //UserTable p = new UserTable();
+        UserTableInit();
         tableInit(); //инициируем список переменных посредством запроса
         //задаем начальные значения
         set_role.setText(Profile.getCurrentRole());
@@ -37,7 +39,6 @@ public class AdminController extends ManagerController {
         addListenerNameFormat(first_name, Config.regex_name);
         addListenerNameFormat(last_name,Config.regex_name);
         addListenerNameFormat(f_name,"|"+Config.regex_name);
-        addListenerNameFormat(adress,Config.adress);
         addListenerNameFormat(new_password,Config.regex_login); //новый пароль на формат
 
 
@@ -54,6 +55,13 @@ public class AdminController extends ManagerController {
         set_id.setText(""+Profile.getId());
 
         initChoice(); //инициируем список посредством запроса
+    }
+    private void UserTableInit(){
+        UserModel p= new UserModel("SELECT * FROM users WHERE ?","1");
+        p_table.setItems(p.getItems());
+        first_name_set.setCellValueFactory(new PropertyValueFactory<User,String>("first_name"));
+        last_name_set.setCellValueFactory(new PropertyValueFactory<User,String>("last_name"));
+        //p_table.getColumns().add(first_name_set);
     }
     public void saveUserChangedInfo(ActionEvent actionEvent) {
             String id_user = user_change_id.getText(); //
